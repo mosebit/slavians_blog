@@ -35,9 +35,13 @@ DarkReader.setFetchMethod(url => {
   function checkDarkMode() {
     if (darkModeEnabled()) {
       DarkReader.enable();
-    } else {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+  } else {
       DarkReader.disable();
-    }
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+  }
   
     if (darkModeSelected() === true) {
       setIconsDarkModeOn();
@@ -57,12 +61,20 @@ DarkReader.setFetchMethod(url => {
   function enableDarkMode() {
     DarkReader.enable();
     localStorage.setItem('darkMode', 'true');
+
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+
     setIconsDarkModeOn();
   }
   
   function disableDarkMode() {
     DarkReader.disable();
     localStorage.setItem('darkMode', 'false');
+
+    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.add('light');
+
     setIconsDarkModeOff();
   }
   
